@@ -1,0 +1,14 @@
+CREATE DATABASE detran;
+
+use detran;
+
+CREATE TABLE `veiculos` (
+  `placa` varchar(7) NOT NULL,
+  `veiculo` varchar(40) NOT NULL,
+  `marca` varchar(30) NOT NULL,
+  `cor` varchar(20) NOT NULL,
+  `ano` int(4) NOT NULL,
+  `proprietario` varchar(40) NOT NULL,
+  `fone` varchar(15) NOT NULL,
+  `opcionais` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
