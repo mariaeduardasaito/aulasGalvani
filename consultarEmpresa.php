@@ -11,11 +11,11 @@ if (isset($_POST ["op"]))
 	if ($op=="CPF")
 		$consulta=mysqli_query($bd,"select * from usuarios where CPF='$expressao'");
 	if ($op=="NOME")
-		$consulta=mysqli_query($bd,"select * from usuarios where NOME='$expressao'");
+		$consulta=mysqli_query($bd,"select * from usuarios where NOME like '%$expressao%'");
 	if ($op=="CELULAR")
 		$consulta=mysqli_query($bd,"select * from usuarios where CELULAR like '%$expressao%'");
 	if ($op=="EMAIL")
-		$consulta=mysqli_query($bd,"select * from usuarios where EMAIL='$expressao'");	
+		$consulta=mysqli_query($bd,"select * from usuarios where EMAIL like '%$expressao%'");	
 } else
 {
 	echo "volte a página e escolha o campo que fará a pesquisa";
