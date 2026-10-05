@@ -16,7 +16,7 @@ $CELULAR=		$_POST["CELULAR"];
 $EMAIL=		$_POST["EMAIL"];
 $USUARIO=		$_POST["USUARIO"];
 $SENHA=		$_POST["SENHA"];
-$con=mysqli_connect("localhost","root","","empresa") or die ("erro!");
+$con=mysqli_connect("localhost","root","","usuarios") or die ("erro!");
 
 $in = "insert into usuarios values ('$CPF',
 									'$NOME',

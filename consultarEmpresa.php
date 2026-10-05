@@ -1,106 +1,67 @@
+<HTML>
+<BODY>
 <?php
+$expressao=		$_POST["expressao"];
+$bd=mysqli_connect("localhost","root","","empresa") or die ("erro!");
 
-$bd = mysqli_connect("localhost", "root", "", "detran");
 
-if (!$bd) {
-    die("Erro ao conectar com o banco de dados: " . mysqli_connect_error());
+if (isset($_POST ["op"]))
+{
+	$op = $_POST ["op"];
+	if ($op=="CPF")
+		$consulta=mysqli_query($bd,"select * from usuarios where CPF='$expressao'");
+	if ($op=="NOME")
+		$consulta=mysqli_query($bd,"select * from usuarios where NOME='$expressao'");
+	if ($op=="CELULAR")
+		$consulta=mysqli_query($bd,"select * from usuarios where CELULAR like '%$expressao%'");
+	if ($op=="EMAIL")
+		$consulta=mysqli_query($bd,"select * from usuarios where EMAIL='$expressao'");	
+} else
+{
+	echo "volte a página e escolha o campo que fará a pesquisa";
+	exit;
 }
-
-if (!isset($_POST["expressao"]) || !isset($_POST["op"])) {
-    die("Volte à página e escolha o campo que fará a pesquisa.");
+$reg = mysqli_fetch_array($consulta);
+if ($reg==0)
+{
+	echo "Não existem registros para a pesquisa!";
+	exit;
 }
+while ($reg!=0)
+{
+	$CPF = $reg["CPF"];
+	$NOME = $reg["NOME"];
+	$NASCIMENTO = $reg["NASCIMENTO"];
+	$ENDERECO = $reg["ENDERECO"];
+	$BAIRRO = $reg["BAIRRO"];
+	$CIDADE = $reg["CIDADE"];
+	$UF = $reg["UF"];
+	$CELULAR = $reg["CELULAR"];
+	$EMAIL = $reg["EMAIL"];
+	$USUARIO = $reg["USUARIO"];
+	$SENHA = $reg["SENHA"];
 
-$expressao = mysqli_real_escape_string($bd, $_POST["expressao"]);
-$op = $_POST["op"];
-
-switch ($op) {
-
-    case "CPF":
-        $consulta = mysqli_query(
-            $bd,
-            "SELECT * FROM veiculos WHERE CPF = '$expressao'"
-        );
-        break;
-
-    case "NOME":
-        $consulta = mysqli_query(
-            $bd,
-            "SELECT * FROM veiculos WHERE NOME LIKE '%$expressao%'"
-        );
-        break;
-
-    case "CELULAR":
-        $consulta = mysqli_query(
-            $bd,
-            "SELECT * FROM veiculos WHERE CELULAR LIKE '%$expressao%'"
-        );
-        break;
-
-    case "EMAIL":
-        $consulta = mysqli_query(
-            $bd,
-            "SELECT * FROM veiculos WHERE EMAIL = '$expressao'"
-        );
-        break;
-
-    default:
-        die("Opção de pesquisa inválida.");
-}
-
-if (!$consulta) {
-    die("Erro na consulta: " . mysqli_error($bd));
-}
-
-if (mysqli_num_rows($consulta) == 0) {
-    echo "Não existem registros para a pesquisa!";
-    echo "<br><br>";
-    echo '<a href="consultarEmpresa.html">Voltar</a>';
-    exit;
-}
-
-while ($reg = mysqli_fetch_assoc($consulta)) {
-
-    $CPF = htmlspecialchars($reg["CPF"]);
-    $NOME = htmlspecialchars($reg["NOME"]);
-    $NASCIMENTO = htmlspecialchars($reg["NASCIMENTO"]);
-    $ENDERECO = htmlspecialchars($reg["ENDERECO"]);
-    $BAIRRO = htmlspecialchars($reg["BAIRRO"]);
-    $CIDADE = htmlspecialchars($reg["CIDADE"]);
-    $UF = htmlspecialchars($reg["UF"]);
-    $CELULAR = htmlspecialchars($reg["CELULAR"]);
-    $EMAIL = htmlspecialchars($reg["EMAIL"]);
-
-    echo "
-        CPF: $CPF<br>
-        NOME: $NOME<br>
-        NASCIMENTO: $NASCIMENTO<br>
-        ENDERECO: $ENDERECO<br>
-        BAIRRO: $BAIRRO<br>
-        CIDADE: $CIDADE<br>
-        UF: $UF<br>
-        CELULAR: $CELULAR<br>
-        EMAIL: $EMAIL<br>
-        <hr>
-    ";
-
-    echo '
-        <a href="excluirEmpresa.php?pl=' . urlencode($CPF) . '"
-           onclick="return confirm(\'Excluir o registro?\');">
-           Excluir
-        </a>
-        &nbsp;&nbsp;
-    ';
-
-    echo '
-        <a href="alterarEmpresa.php?pl=' . urlencode($CPF) . '">
-           Alterar
-        </a>
-        <hr>
-    ';
-}
-
-mysqli_close($bd);
-
+	
+	echo   "CPF: $CPF<br>
+			NOME: $NOME<br>
+			NASCIMENTO: $NASCIMENTO<br>
+			ENDERECO: $ENDERECO<br>
+			BAIRRO: $BAIRRO<br>
+			CIDADE: $CIDADE<br>
+			UF: $UF<br>
+			CELULAR: $CELULAR<br>
+            EMAIL: $EMAIL<br>
+            USUARIO: $USUARIO<br>
+            SENHA: $SENHA<br>";
+			
+	?>
+	<a href="excluirEmpresa.php?pl=<?php echo $CPF;?>" onclick = "return confirm ('Exclui o registro?');">Excluir</a>
+	
+	<a href="alterar.Empresa?pl=<?php echo $CPF;?>">Alterar</a><hr>
+	<?php
+	$reg = mysqli_fetch_array($consulta);		
+} 
 ?>
-
-<a href="consultarEmpresa.html">Voltar</a>
+<br><a href="consultarEmpresa.html">Voltar</a><br>
+</body>
+</html>
