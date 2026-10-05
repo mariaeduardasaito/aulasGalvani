@@ -1,7 +1,7 @@
 <HTML>
 <HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <TITLE>Alteração</TITLE>
+ <TITLE>Altera��o</TITLE>
 </HEAD>
 <?php
 
