@@ -7,10 +7,10 @@
 
 $placa=trim($_GET["pl"]);
 
-$bd=mysqli_connect("localhost","root","","usuarios") or die ("erro!");
+$bd=mysqli_connect("localhost","root","","detran") or die ("erro!");
 
 
-$sql="select * from veiculos where placa = '$detran'"; //consulta sql
+$sql="select * from veiculos where placa = '$placa'"; //consulta sql
 
 $consulta=mysqli_query($bd, $sql); //faz a consulta de todos os registros
 $reg=mysqli_fetch_array($consulta); // cria uma matriz com todos os campos e registros
