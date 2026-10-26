@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <TITLE>Incluir</TITLE>
+</HEAD>
+<BODY>
+<font face="book antiqua" size="8"><center>Cadastrar Imóvel</center></font><br>
+
+<form method="post" action="incluir.php">
+Título:		<input type="text" size="50" name="titulo" maxlength="120"><br><br>
+Tipo:
+<select name="tipo_imovel">
+	<option value="">Escolha</option>
+	<option value="Apartamento">Apartamento</option>
+	<option value="Casa">Casa</option>
+	<option value="Terreno">Terreno</option>
+	<option value="Comercial">Comercial</option>
+</select><br><br>
+Finalidade:
+<input type="radio" name="finalidade" value="Venda" checked>Venda
+<input type="radio" name="finalidade" value="Locação">Locação<br><br>
+Preço:		<input type="number" name="preco" min="0" step="0.01"><br><br>
+Endereço:	<input type="text" size="50" name="endereco" maxlength="200"><br><br>
+Cidade:		<input type="text" name="cidade"><br><br>
+Quartos:	<input type="number" name="quartos" min="0" value="0"><br><br>
+Banheiros:	<input type="number" name="banheiros" min="0" value="1"><br><br>
+Vagas:		<input type="number" name="vagas_garagem" min="0" value="0"><br><br>
+Área (m²):	<input type="number" name="area_m2" min="0" step="0.01"><br><br>
+Descrição:	<textarea rows="6" cols="60" name="descricao"></textarea><br><br>
+			<input type="submit" value="Incluir">
+</form>
+<br><a href="admin.php">Voltar</a>
+</BODY>
+</HTML>
