@@ -11,7 +11,7 @@
 <hr>
 
 <form method="get" action="index.php">
-Busca: <input type="text" name="busca">
+Busca: <input type="text" name="busca" size="40" placeholder="endereço, tipo, finalidade, cidade...">
 Finalidade:
 <select name="finalidade">
 	<option value="">Todos</option>
@@ -40,6 +40,12 @@ $f_finalidade=	$_GET["finalidade"] ?? "";
 $f_tipo=		$_GET["tipo"] ?? "";
 $f_preco=		$_GET["preco_max"] ?? "";
 
+// escapa todos os filtros para evitar SQL injection
+$f_busca=		mysqli_real_escape_string($bd,trim($f_busca));
+$f_finalidade=	mysqli_real_escape_string($bd,$f_finalidade);
+$f_tipo=		mysqli_real_escape_string($bd,$f_tipo);
+$f_preco=		mysqli_real_escape_string($bd,$f_preco);
+
 $sql="select * from imoveis where status='Disponível'";
 if ($f_finalidade!="")
 	$sql=$sql." and finalidade='$f_finalidade'";
@@ -47,17 +53,31 @@ if ($f_tipo!="")
 	$sql=$sql." and tipo_imovel='$f_tipo'";
 if ($f_preco!="")
 	$sql=$sql." and preco <= '$f_preco'";
+
 if ($f_busca!="")
-	$sql=$sql." and (titulo like '%$f_busca%' or cidade like '%$f_busca%')";
+{
+	$palavras=explode(" ",$f_busca);
+	foreach ($palavras as $p)
+	{
+		if ($p!="")
+		{
+			$sql=$sql." and (endereco like '%$p%'
+				or tipo_imovel like '%$p%'
+				or finalidade like '%$p%'
+				or titulo like '%$p%'
+				or cidade like '%$p%')";
+		}
+	}
+}
 
 $consulta=mysqli_query($bd,$sql);
 $reg=mysqli_fetch_array($consulta);
-if ($reg==0)
+if (!$reg)
 {
 	echo "Não existem imóveis para a pesquisa!";
 	exit;
 }
-while ($reg!=0)
+while ($reg)
 {
 	$id = $reg["id"];
 	$titulo = $reg["titulo"];
