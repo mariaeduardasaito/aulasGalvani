@@ -1,18 +1,20 @@
 <HTML>
 <HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1">
  <TITLE>Detalhes</TITLE>
  <link rel="stylesheet" href="estilo.css">
 </HEAD>
 <BODY>
 <?php
-$id=$_GET["id"];
+$id=$_GET["id"] ?? "";
 $bd=mysqli_connect("localhost","root","","lar_futuro") or die ("erro!");
 mysqli_set_charset($bd,"utf8mb4");
+$id=mysqli_real_escape_string($bd,$id);
 
 $consulta=mysqli_query($bd,"select * from imoveis where id='$id'");
 $reg=mysqli_fetch_array($consulta);
-if ($reg==0)
+if (!$reg)
 {
 	echo "Imóvel não existe!";
 	exit;
@@ -28,7 +30,6 @@ else
 <?php
 echo "Tipo: ".$reg["tipo_imovel"]."<br>
 	  Endereço: ".$reg["endereco"]."<br>
-	  Cidade: ".$reg["cidade"]."<br>
 	  Quartos: ".$reg["quartos"]."<br>
 	  Banheiros: ".$reg["banheiros"]."<br>
 	  Vagas: ".$reg["vagas_garagem"]."<br>

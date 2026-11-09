@@ -1,40 +1,43 @@
 <HTML>
 <HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1">
  <TITLE>Alteração</TITLE>
+ <link rel="stylesheet" href="estilo.css">
 </HEAD>
 <BODY>
 <?php
-$id=$_GET["id"];
+$id=$_GET["id"] ?? "";
 
 $bd=mysqli_connect("localhost","root","","lar_futuro") or die ("erro!");
 mysqli_set_charset($bd,"utf8mb4");
+$id=mysqli_real_escape_string($bd,$id);
 
 $consulta=mysqli_query($bd,"select * from imoveis where id='$id'");
 $reg=mysqli_fetch_array($consulta);
 
-if ($reg==0)
+if (!$reg)
 {
 	 echo "ERRO - Registro não Existe.  ";
 	 exit;
 }
-$titulo = $reg["titulo"];
+$id = $reg["id"];
+$titulo = htmlspecialchars($reg["titulo"],ENT_QUOTES);
 $tipo_imovel = $reg["tipo_imovel"];
 $finalidade = $reg["finalidade"];
 $preco = $reg["preco"];
-$endereco = $reg["endereco"];
-$cidade = $reg["cidade"];
+$endereco = htmlspecialchars($reg["endereco"],ENT_QUOTES);
 $quartos = $reg["quartos"];
 $banheiros = $reg["banheiros"];
 $vagas_garagem = $reg["vagas_garagem"];
 $area_m2 = $reg["area_m2"];
-$descricao = $reg["descricao"];
+$descricao = htmlspecialchars($reg["descricao"] ?? "");
 $status = $reg["status"];
 ?>
 <center><h2>Alterar Imóvel</h2></center>
 <form method="POST" action="regrava.php">
-	<input type="hidden" name="id" value='<?php echo $id; ?>'>
-	<p>Título: <input type="text" size="50" name="titulo" value='<?php echo $titulo; ?>'></p>
+	<input type="hidden" name="id" value="<?php echo $id; ?>">
+	<p>Título: <input type="text" size="50" name="titulo" value="<?php echo $titulo; ?>"></p>
 	<p>Tipo:
 	<select name="tipo_imovel">
 		<option value="Apartamento" <?php if ($tipo_imovel=="Apartamento") echo "selected"; ?>>Apartamento</option>
@@ -47,13 +50,13 @@ $status = $reg["status"];
 		<option value="Venda" <?php if ($finalidade=="Venda") echo "selected"; ?>>Venda</option>
 		<option value="Locação" <?php if ($finalidade=="Locação") echo "selected"; ?>>Locação</option>
 	</select></p>
-	<p>Preço: <input type="number" name="preco" min="0" step="0.01" value='<?php echo $preco; ?>'></p>
-	<p>Endereço: <input type="text" size="50" name="endereco" value='<?php echo $endereco; ?>'></p>
-	<p>Cidade: <input type="text" name="cidade" value='<?php echo $cidade; ?>'></p>
-	<p>Quartos: <input type="number" name="quartos" min="0" value='<?php echo $quartos; ?>'></p>
-	<p>Banheiros: <input type="number" name="banheiros" min="0" value='<?php echo $banheiros; ?>'></p>
-	<p>Vagas: <input type="number" name="vagas_garagem" min="0" value='<?php echo $vagas_garagem; ?>'></p>
-	<p>Área (m²): <input type="number" name="area_m2" min="0" step="0.01" value='<?php echo $area_m2; ?>'></p>
+	<p>Preço: <input type="number" name="preco" min="0" step="0.01" value="<?php echo $preco; ?>"></p>
+	<p>Endereço (logradouro, número, complemento, bairro e cidade):<br>
+	<input type="text" size="60" name="endereco" value="<?php echo $endereco; ?>"></p>
+	<p>Quartos: <input type="number" name="quartos" min="0" value="<?php echo $quartos; ?>"></p>
+	<p>Banheiros: <input type="number" name="banheiros" min="0" value="<?php echo $banheiros; ?>"></p>
+	<p>Vagas: <input type="number" name="vagas_garagem" min="0" value="<?php echo $vagas_garagem; ?>"></p>
+	<p>Área (m²): <input type="number" name="area_m2" min="0" step="0.01" value="<?php echo $area_m2; ?>"></p>
 	<p>Descrição: <textarea rows="5" cols="60" name="descricao"><?php echo $descricao; ?></textarea></p>
 	<p>Status:
 	<select name="status">

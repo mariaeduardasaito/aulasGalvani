@@ -1,7 +1,9 @@
 <HTML>
 <HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1">
  <TITLE>Incluir</TITLE>
+ <link rel="stylesheet" href="estilo.css">
 </HEAD>
 <BODY>
 <font face="book antiqua" size="8"><center>Cadastrar Imóvel</center></font><br>
@@ -20,8 +22,8 @@ Finalidade:
 <input type="radio" name="finalidade" value="Venda" checked>Venda
 <input type="radio" name="finalidade" value="Locação">Locação<br><br>
 Preço:		<input type="number" name="preco" min="0" step="0.01"><br><br>
-Endereço:	<input type="text" size="50" name="endereco" maxlength="200"><br><br>
-Cidade:		<input type="text" name="cidade"><br><br>
+Endereço (logradouro, número, complemento, bairro e cidade):<br>
+			<input type="text" size="60" name="endereco" maxlength="200"><br><br>
 Quartos:	<input type="number" name="quartos" min="0" value="0"><br><br>
 Banheiros:	<input type="number" name="banheiros" min="0" value="1"><br><br>
 Vagas:		<input type="number" name="vagas_garagem" min="0" value="0"><br><br>

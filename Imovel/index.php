@@ -11,7 +11,7 @@
 <hr>
 
 <form method="get" action="index.php">
-Busca: <input type="text" name="busca" size="40" placeholder="endereço, tipo, finalidade, cidade...">
+Busca: <input type="text" name="busca" size="40" placeholder="título, bairro ou cidade...">
 Finalidade:
 <select name="finalidade">
 	<option value="">Todos</option>
@@ -40,7 +40,6 @@ $f_finalidade=	$_GET["finalidade"] ?? "";
 $f_tipo=		$_GET["tipo"] ?? "";
 $f_preco=		$_GET["preco_max"] ?? "";
 
-// escapa todos os filtros para evitar SQL injection
 $f_busca=		mysqli_real_escape_string($bd,trim($f_busca));
 $f_finalidade=	mysqli_real_escape_string($bd,$f_finalidade);
 $f_tipo=		mysqli_real_escape_string($bd,$f_tipo);
@@ -64,8 +63,7 @@ if ($f_busca!="")
 			$sql=$sql." and (endereco like '%$p%'
 				or tipo_imovel like '%$p%'
 				or finalidade like '%$p%'
-				or titulo like '%$p%'
-				or cidade like '%$p%')";
+				or titulo like '%$p%')";
 		}
 	}
 }
@@ -84,7 +82,7 @@ while ($reg)
 	$tipo = $reg["tipo_imovel"];
 	$finalidade = $reg["finalidade"];
 	$preco = number_format($reg["preco"],2,",",".");
-	$cidade = $reg["cidade"];
+	$endereco = $reg["endereco"];
 	$quartos = $reg["quartos"];
 	$area = $reg["area_m2"];
 
@@ -98,7 +96,7 @@ while ($reg)
 		<span class="<?php echo $classe; ?>"><?php echo $finalidade; ?></span>
 		<h3><?php echo $titulo; ?></h3>
 		<b>R$ <?php echo $preco; ?></b><br>
-		<?php echo $cidade; ?><br>
+		<?php echo $endereco; ?><br>
 		<?php echo "$quartos quartos - $area m²"; ?><br><br>
 		<a href="detalhes.php?id=<?php echo $id; ?>">Ver detalhes</a>
 	</div>

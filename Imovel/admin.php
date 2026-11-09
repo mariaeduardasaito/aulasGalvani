@@ -1,6 +1,7 @@
 <HTML>
 <HEAD>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1">
  <TITLE>Administração</TITLE>
  <link rel="stylesheet" href="estilo.css">
 </HEAD>
@@ -14,7 +15,7 @@ mysqli_set_charset($bd,"utf8mb4");
 
 $consulta=mysqli_query($bd,"select * from imoveis order by id desc");
 $reg=mysqli_fetch_array($consulta);
-if ($reg==0)
+if (!$reg)
 {
 	echo "Não existem imóveis cadastrados!";
 	exit;
@@ -23,7 +24,7 @@ if ($reg==0)
 <table>
 <tr><th>ID</th><th>Título</th><th>Tipo</th><th>Finalidade</th><th>Preço</th><th>Status</th><th>Ações</th></tr>
 <?php
-while ($reg!=0)
+while ($reg)
 {
 	$id = $reg["id"];
 	?>
