@@ -83,16 +83,17 @@ INSERT INTO imoveis (
     35.00,
     'Elevador\nAr-condicionado\nInterfone',
     'Disponível'
-);
+),
 (
     'Terreno à venda',
     'Terreno',
     'Venda',
-    430.000,
+    430000.00,
     'Jardim Estoril, Bauru - SP',
     0,
     0,
     0,
-    385.00
+    385.00,
+    'Terreno à venda no Jardim Estoril - Bauru/SP\n385 m² (14 x 27,5) | Em frente à pracinha | Lote encaixado | Excelente localização',
     'Disponível'
 );
