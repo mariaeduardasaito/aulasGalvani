@@ -84,3 +84,15 @@ INSERT INTO imoveis (
     'Elevador\nAr-condicionado\nInterfone',
     'Disponível'
 );
+(
+    'Terreno à venda',
+    'Terreno',
+    'Venda',
+    430.000,
+    'Jardim Estoril, Bauru - SP',
+    0,
+    0,
+    0,
+    385.00
+    'Disponível'
+);
