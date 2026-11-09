@@ -29,7 +29,8 @@ INSERT INTO imoveis (
     banheiros,
     vagas_garagem,
     area_m2,
-    descricao
+    descricao,
+    status
 ) VALUES
 (
     'Apartamento com 3 Quartos para alugar',
@@ -56,7 +57,7 @@ INSERT INTO imoveis (
     634.00,
     'Sobrado com 3 pavimentos para venda no Jardim Estoril II - Bauru/SP\n634 m² de construção | 408 m² de terreno | 4 suítes | Piscina | Energia Solar',
     'Disponível'
-);
+),
 (
     'Apartamento para venda',
     'Apartamento',
@@ -69,7 +70,7 @@ INSERT INTO imoveis (
     86.00,
     'Conheça este apartamento à venda no Duo Residence Club, localizado na Vila Aviação, em Bauru/SP. Com ambientes bem distribuídos, móveis planejados e uma estrutura completa de lazer, é uma excelente opção para quem busca conforto, praticidade e qualidade de vida.',
     'Disponível'
-);
+),
 (
     'Sala comercial térrea',
     'Comercial',
