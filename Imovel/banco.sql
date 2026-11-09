@@ -32,50 +32,54 @@ INSERT INTO imoveis (
     descricao
 ) VALUES
 (
-    'Apartamento compacto no centro',
+    'Apartamento com 3 Quartos para alugar',
     'Apartamento',
     'Locação',
-    1800.00,
-    'Rua das Flores, 120, apto 31, Centro, Bauru',
-    1,
-    1,
-    0,
-    42.50,
-    'Perto do comércio e do transporte.'
-),
-(
-    'Casa ampla com quintal',
-    'Casa',
-    'Venda',
-    650000.00,
-    'Av. Brasil, 845, Jardim América, Bauru',
+    2000.00,
+    'Rua Rio Branco, 1 - Centro, Bauru - SP',
     3,
     2,
-    2,
-    180.00,
-    'Quintal gramado e churrasqueira.'
+    1,
+    140.00,
+    'Apartamento à venda no Edifício Rio Branco - Bauru/SP\n140 m² | 3 quartos | Sacada | 1 vaga',
+    'Disponível'
 ),
 (
-    'Terreno plano em condomínio',
-    'Terreno',
+    'Casa com 4 Quartos à venda, 634m²',
+    'Casa',
     'Venda',
-    220000.00,
-    'Rua dos Ipês, lote 14, Vila Universitária, Bauru',
-    0,
-    0,
-    0,
-    360.00,
-    'Pronto para construir.'
-),
+    2600000.00,
+    'Jardim Estoril III, Bauru - SP',
+    4,
+    5,
+    4,
+    634.00,
+    'Sobrado com 3 pavimentos para venda no Jardim Estoril II - Bauru/SP\n634 m² de construção | 408 m² de terreno | 4 suítes | Piscina | Energia Solar',
+    'Disponível'
+);
+(
+    'Apartamento para venda',
+    'Apartamento',
+    'Venda',
+    870000.00,
+    'Rua Severino Lins, 655 - Vila Aviação, Bauru - SP',
+    3,
+    3,
+    2,
+    86.00,
+    'Conheça este apartamento à venda no Duo Residence Club, localizado na Vila Aviação, em Bauru/SP. Com ambientes bem distribuídos, móveis planejados e uma estrutura completa de lazer, é uma excelente opção para quem busca conforto, praticidade e qualidade de vida.',
+    'Disponível'
+);
 (
     'Sala comercial térrea',
     'Comercial',
     'Locação',
-    3200.00,
-    'Rua XV de Novembro, 300, Centro, Bauru',
+    1400.00,
+    'Avenida Nações Unidas, 1585 - Centro, Bauru - SP',
     0,
     1,
     1,
-    65.00,
-    'Vitrine para a rua principal.'
+    35.00,
+    'Elevador\nAr-condicionado\nInterfone',
+    'Disponível'
 );
